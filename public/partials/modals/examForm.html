@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4 class="modal-title">{{ ModalCtrl.title }}評量</h4>
+</div>
+<div class="modal-body">
+
+    <form name="examForm" class="form-horizontal" novalidate>
+        <div class="form-group" style="padding: 0 15px;">
+            <input class="form-control input-lg" type="number" name="grade" id="grade"
+                   ng-model="ModalCtrl.exam.grade" min="7"　max="9" step="1" required>
+        </div>
+
+        <div class="form-group" style="padding: 0 15px;">
+            <input type="radio" name="half" value="上" ng-model="ModalCtrl.exam.half" /> <span style="margin-right: 10px;">上學期</span>
+            <input type="radio" name="half" value="下" ng-model="ModalCtrl.exam.half" /> 下學期
+        </div>
+
+        <div class="form-group" style="padding: 0 15px;">
+            <input class="form-control input-lg" type="text" name="name" required
+                   ng-model="ModalCtrl.exam.name" placeholder="評量名稱" />
+        </div>
+
+        <div class="form-group" style="padding: 0 15px;">
+            <input type="checkbox" ng-model="ModalCtrl.exam.social_merge" /> 社會合科
+        </div>
+
+    </form>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="examForm.$invalid" ng-click="ModalCtrl.ok()">確定</button>
+    <button class="btn btn-warning" ng-click="ModalCtrl.cancel()">取消</button>
+</div>

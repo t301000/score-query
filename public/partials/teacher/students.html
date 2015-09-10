@@ -1,0 +1,52 @@
+<h4>學生名單</h4>
+
+<div style="margin-bottom: 10px;">
+    <button class="btn btn-primary btn-lg" ng-click="Student.showNewStuFormModal()">
+        <i class="icon ion-plus-round"></i>&nbsp;&nbsp;新增
+    </button>
+    <button class="btn btn-primary btn-lg" ng-click="Student.showImportModal()">
+        <i class="icon ion-android-upload"></i>&nbsp;&nbsp;匯入名單
+    </button>
+    <button class="btn btn-success btn-lg" ng-click="Student.exportToExcel()" ng-disabled="Student.students.length === 0">
+        <i class="icon ion-android-download"></i>&nbsp;&nbsp;匯出名單
+    </button>
+    <a href="sample/students_import.xlsx" class="btn btn-link">下載範本檔</a>
+    <div class="pull-right text-danger">
+        * 要刪除學生請快點兩下刪除鈕<br />
+        * 將一併刪除該生所有成績
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-body">
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>座號</th>
+                        <th>姓名</th>
+                        <th>學生代碼</th>
+                        <th>管理</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr ng-repeat="stu in Student.students| orderBy: 'num'">
+                        <td ng-bind="stu.num"></td>
+                        <td ng-bind="stu.name"></td>
+                        <td><b><i ng-bind="stu.link_code"></i></b></td>
+                        <td>
+                            <button class="btn btn-warning" ng-click="Student.edit(stu)">
+                                <i class="icon ion-compose"></i>&nbsp;&nbsp;編輯
+                            </button>
+                            <button class="btn btn-danger" ng-dblclick="Student.delete(stu)">
+                                <i class="icon ion-trash-b"></i>&nbsp;&nbsp;刪除
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+
+    </div>
+</div>

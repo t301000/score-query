@@ -1,0 +1,29 @@
+<div class="modal-header">
+    <h4 class="modal-title">匯入名單</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <input type="file" name="excel_file" accept=".xlsx" required="true"
+               onchange="angular.element(this).scope().ImportStuModalCtrl.fileChanged(this.files);">
+    </div>
+
+    <div class="form-group" ng-show="ImportStuModalCtrl.excelFile">
+        <select id="sheet_name" class="form-control ng-pristine ng-invalid ng-invalid-required"
+                ng-change="ImportStuModalCtrl.updateItems()" ng-model="ImportStuModalCtrl.selectedSheetName" required="required"
+                ng-options="sheetName as sheetName for (sheetName, sheetData) in ImportStuModalCtrl.sheets"
+                ng-disabled="ImportStuModalCtrl.sheets.length < 1">
+            <option value="" class="">---- 選擇工作表 ----</option>
+        </select>
+    </div>
+    <div class="text-danger text-right" ng-show="ImportStuModalCtrl.items.length">已存在之座號將略過</div>
+    <ul>
+        <li ng-repeat="item in ImportStuModalCtrl.items">
+            {{item.num}} 號 {{item.name}}
+        </li>
+    </ul>
+
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="ImportStuModalCtrl.items.length < 1" ng-click="ImportStuModalCtrl.ok()">確定</button>
+    <button class="btn btn-warning" ng-click="ImportStuModalCtrl.cancel()">取消</button>
+</div>

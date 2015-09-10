@@ -1,0 +1,42 @@
+<h4>歷次評量</h4>
+
+<div style="margin-bottom: 10px;">
+    <button class="btn btn-success btn-lg" ng-click="Exam.showModal()">
+        <i class="icon ion-plus-circled"></i>&nbsp;&nbsp;新增評量
+    </button>
+    <a href="sample/scores_import.xlsx" class="btn btn-link">下載成績匯入範本檔</a>
+    <div class="pull-right text-danger">
+        * 要刪除請快點兩下刪除鈕<br />
+        * 既有成績會全部刪除
+    </div>
+</div>
+
+<div class="panel panel-success">
+    <div class="panel-body">
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>年級 / 學期</th>
+                    <th>評量名稱</th>
+                    <th>社會合科</th>
+                    <th>管理</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr ng-repeat="exam in Exam.exams">
+                    <td><span  ng-bind="exam.grade"></span> <span ng-bind="exam.half"></span></td>
+                    <td><a ui-sref="auth.teacher.scores({id: exam.class_id, eid: exam.id})"><span  ng-bind="exam.name"></span></a></td>
+                    <td><span ng-bind="Exam.getYesNoText(exam.social_merge)"></span></td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="Exam.showModal(exam)"><i class="icon ion-compose"></i>&nbsp;&nbsp;編輯</button>
+                        <button class="btn btn-danger" ng-dblclick="Exam.delete(exam)"><i class="icon ion-trash-b"></i>&nbsp;&nbsp;刪除</button>
+                    </td>
+                </tr>
+            </tbody>
+
+        </table>
+
+    </div>
+</div>

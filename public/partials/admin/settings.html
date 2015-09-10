@@ -1,0 +1,37 @@
+<h4>系統設定</h4>
+
+<div class="panel panel-success">
+    <div class="panel-body">
+        <h6>開放 OpenID 登入之學校</h6>
+
+        <div>
+            <form class="form-inline" name="newSchoolData">
+                <div class="form-group">
+                    <input class="form-control input-lg" type="text" placeholder="請輸入校代碼"
+                           ng-model="vmCtrl.new_school.code" ng-pattern="/^[0-9]{6}$/" required/>
+                </div>
+                <div class="form-group" style="margin-left: 20px;">
+                    <input class="form-control input-lg" type="text" placeholder="請輸入校名"
+                           ng-model="vmCtrl.new_school.name" required/>
+                </div>
+                <button class="btn btn-primary" ng-click="vmCtrl.addSchoolData(vmCtrl.new_school)" ng-disabled="newSchoolData.$invalid" style="margin-left: 20px;">新增</button>
+            </form>
+        </div>
+
+        <div style="margin-top: 20px;" ng-show="vmCtrl.schoolList.length > 0">
+            <table class="table table-hover">
+                <th>校代碼</th>
+                <th>校名</th>
+                <th>管理</th>
+                <tr ng-repeat="school in vmCtrl.schoolList | orderBy:'code'">
+                    <td>{{ school.code }}</td>
+                    <td>{{ school.name }}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="vmCtrl.deleteSchool(school)">刪除</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

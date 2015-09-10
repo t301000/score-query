@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-lg-4 col-md-5" style="margin-top: 30px;">
+        <a ui-sref="auth.teacher.new-class" class="btn btn-success btn-lg">
+            <i class="icon ion-plus-circled"></i>&nbsp;&nbsp;新增班級
+        </a>
+        <button class="btn btn-success btn-lg" ng-click="teacherDashboard.reloadList()" style="margin-left: 10px;">
+            <i class="icon ion-ios-refresh"></i>&nbsp;&nbsp;重新載入
+        </button>
+        <hr />
+        <div ng-repeat="class in teacherDashboard.classList">
+            <div class="panel panel-primary" ng-class="{'panel-danger': teacherDashboard.nowIndex === $index}">
+                <div class="panel-heading">
+                    <h3 class="panel-title">入學學年度：{{ class.school_year_in }}</h3>
+                </div>
+                <div class="panel-body">
+                    <h4>{{ class.class_name }}</h4>
+                    <h6>班級代碼： <b><i ng-bind="class.class_code"></i></b></h6>
+                    <div class="text-center">
+                        <a ui-sref="auth.teacher.edit-class({id: class.id})" class="btn btn-warning btn-lg" ng-click="teacherDashboard.setNowIndex($index)">
+                            <i class="icon ion-compose"></i>&nbsp;&nbsp;編輯
+                        </a>
+                        <a ui-sref="auth.teacher.students({id: class.id})" class="btn btn-success btn-lg" ng-click="teacherDashboard.setNowIndex($index)">
+                            <i class="icon ion-ios-people"></i>&nbsp;&nbsp;名單
+                        </a>
+                        <a ui-sref="auth.teacher.exams({id: class.id})" class="btn btn-success btn-lg" ng-click="teacherDashboard.setNowIndex($index)">
+                            <i class="icon ion-ios-paper-outline"></i>&nbsp;&nbsp;評量
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-hide="teacherDashboard.classList.length > 0"><h5>{{ teacherDashboard.msg }}</h5></div>
+    </div>
+
+    <div class="col-lg-8 col-md-7" style="margin-top: 30px;">
+        <div ui-view></div>
+    </div>
+</div>

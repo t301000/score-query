@@ -1,0 +1,47 @@
+<div class="modal-header">
+    <h4 class="modal-title">匯入成績 - {{ ImportScoreModalCtrl.title }}</h4>
+</div>
+<div class="modal-body">
+    <div class="form-group">
+        <input type="file" name="excel_file" accept=".xlsx" required="true"
+               onchange="angular.element(this).scope().ImportScoreModalCtrl.fileChanged(this.files);">
+    </div>
+
+    <div class="form-group" ng-show="ImportScoreModalCtrl.excelFile">
+        <select id="sheet_name" class="form-control ng-pristine ng-invalid ng-invalid-required"
+                ng-change="ImportScoreModalCtrl.updateItems()" ng-model="ImportScoreModalCtrl.selectedSheetName" required="required"
+                ng-options="sheetName as sheetName for (sheetName, sheetData) in ImportScoreModalCtrl.sheets"
+                ng-disabled="ImportScoreModalCtrl.sheets.length < 1">
+            <option value="" class="">---- 選擇工作表 ----</option>
+        </select>
+    </div>
+    <div class="text-danger text-right" ng-show="ImportScoreModalCtrl.excelFile">既有的成績將被刪除</div>
+    <div tasty-table bind-resource="ImportScoreModalCtrl.tasty.resource" watch-resource="collection" ng-show="ImportScoreModalCtrl.items.length">
+        <table class="table table-striped table-hover">
+            <thead tasty-thead bind-not-sort-by="ImportScoreModalCtrl.tasty.notSortBy"></thead>
+
+            <tbody>
+            <tr ng-repeat="item in rows" class="text-right">
+                <td class="text-center">{{ ::item.num }}</td>
+                <td class="text-center">{{ ::item.name }}</td>
+                <td>{{ ::item.chinese }}</td>
+                <td>{{ ::item.english }}</td>
+                <td>{{ ::item.math }}</td>
+                <td>{{ ::item.science }}</td>
+                <td>{{ ::item.social | number:2 }}</td>
+                <td ng-hide="Score.exam.social_merge">{{ ::item.history }}</td>
+                <td ng-hide="Score.exam.social_merge">{{ ::item.geo }}</td>
+                <td ng-hide="Score.exam.social_merge">{{ ::item.civic }}</td>
+                <td>{{ ::item.avg | number:2 }}</td>
+                <td>{{ ::item.total | number:2 }}</td>
+                <td>{{ ::item.rank }}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="ImportScoreModalCtrl.items.length < 1" ng-click="ImportScoreModalCtrl.ok()">確定</button>
+    <button class="btn btn-warning" ng-click="ImportScoreModalCtrl.cancel()">取消</button>
+</div>

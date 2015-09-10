@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h4 class="modal-title">新增學生</h4>
+</div>
+<div class="modal-body">
+
+    <form name="newStuForm" class="form-horizontal" novalidate>
+        <div class="form-group" style="padding: 0 15px;">
+            <input class="form-control input-lg" type="number" id="stu_number" name="stu_number"
+                   ng-model="ModalCtrl.newStu.num" min="1" placeholder="座號" required/>
+        </div>
+
+        <div class="form-group" style="padding: 0 15px;">
+            <input class="form-control input-lg" type="text" id="stu_name" name="stu_name"
+                   ng-model="ModalCtrl.newStu.name" placeholder="姓名" required/>
+        </div>
+
+    </form>
+
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="newStuForm.$invalid" ng-click="ModalCtrl.ok()">確定</button>
+    <button class="btn btn-warning" ng-click="ModalCtrl.cancel()">取消</button>
+</div>

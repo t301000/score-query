@@ -1,0 +1,72 @@
+<div class="row">
+
+    <div class="col-lg-3">
+
+        <button class="btn btn-warning btn-lg" style="margin-top: 30px;"
+                ng-click="ParentDashboard.showModal()">
+            <i class="icon ion-plus-circled"></i>&nbsp;&nbsp;新增學生
+        </button>
+        <hr />
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">學生名單</h3>
+            </div>
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item border-none" ng-hide="ParentDashboard.stuList.length">
+                        <span class="text-warning size-lg">{{ ParentDashboard.msg }}</span>
+                    </li>
+                    <li class="list-group-item border-none" ng-repeat="stu in ParentDashboard.stuList">
+                        <a class="btn btn-link" ng-click="ParentDashboard.showScore(stu)"><span class="size-lg" style="line-height: 1.5em;">{{stu.name}}</span></a>
+                        <span class="pull-right">
+                            <button class="btn btn-danger" ng-click="ParentDashboard.del(stu)"><i class="icon ion-trash-b"></i>&nbsp;&nbsp;刪除</button>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-9">
+        <div class="panel panel-success" ng-show="ParentDashboard.currStu" style="margin-top: 20px;">
+            <div class="panel-body">
+                <h4><span class="text-primary">{{ ParentDashboard.currStu.name }}</span> 歷次評量成績</h4>
+                <div ng-hide="ParentDashboard.scores.length"><h5 class="text-warning">{{ ParentDashboard.msgScore }}</h5></div>
+                <table ng-show="ParentDashboard.scores.length" class="table table-hover" style="margin-top: 25px;">
+                    <tr ng-repeat-start="item in ParentDashboard.scores | orderBy:'-exam.created_at'" ng-hide="$index % 6">
+                        <th class="text-left">評量</th>
+                        <th class="text-right">國文</th>
+                        <th class="text-right">英文</th>
+                        <th class="text-right">數學</th>
+                        <th class="text-right">自然</th>
+                        <th class="text-right">社會</th>
+                        <th ng-hide="ParentDashboard.scores[0].exam.social_merge" class="text-right">歷史</th>
+                        <th ng-hide="ParentDashboard.scores[0].exam.social_merge" class="text-right">地理</th>
+                        <th ng-hide="ParentDashboard.scores[0].exam.social_merge" class="text-right">公民</th>
+                        <th class="text-right">平均</th>
+                        <th class="text-right">總分</th>
+                        <th class="text-right">名次</th>
+                    </tr>
+                    <tr ng-repeat-end class="text-right">
+                        <td class="text-left">{{ ::item.exam.grade }} {{ ::item.exam.half }} {{ ::item.exam.name }}</td>
+                        <td>{{ ::item.chinese }}</td>
+                        <td>{{ ::item.english }}</td>
+                        <td>{{ ::item.math }}</td>
+                        <td>{{ item.science }}</td>
+                        <!--<td ng-show="item.exam.social_merge">{{ item.social | number:0 }}</td>-->
+                        <td ng-hide="item.exam.social_merge">{{ ::item.social | number:2 }}</td>
+                        <td ng-hide="item.exam.social_merge">{{ ::item.history }}</td>
+                        <td ng-hide="item.exam.social_merge">{{ ::item.geo }}</td>
+                        <td ng-hide="item.exam.social_merge">{{ ::item.civic }}</td>
+                        <td>{{ ::item.avg | number:2 }}</td>
+                        <td>{{ ::item.total | number:2 }}</td>
+                        <td>{{ ::item.rank }}</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

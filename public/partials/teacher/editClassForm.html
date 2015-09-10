@@ -1,0 +1,24 @@
+<h4>編輯班級資料</h4>
+
+<div class="panel panel-success">
+    <div class="panel-body">
+        <!--<h4>新增班級</h4>-->
+        <form name="editClassForm">
+            <div class="form-group">
+                <label class="control-label" for="school_year_in">入學學年度：</label>
+                <input class="form-control input-lg" type="number" id="school_year_in" name="school_year_in"
+                       ng-model="EditClass.classObj.school_year_in" required/>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="class_name">班級名稱：</label>
+                <input class="form-control input-lg" type="text" id="class_name" name="class_name" ng-model="EditClass.classObj.class_name"
+                       required/>
+            </div>
+            <div class="text-right">
+                <button class="btn btn-primary" ng-click="EditClass.updateClass()" ng-disabled="editClassForm.$invalid">確定</button>
+                <button class="btn btn-danger" ng-disabled="!EditClass.confirm" ng-click="EditClass.confirmDelete()" style="margin-left: 10px;">刪除班級</button>
+                <input type="checkbox" ng-model="EditClass.confirm">
+            </div>
+        </form>
+    </div>
+</div>

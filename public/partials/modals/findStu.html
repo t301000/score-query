@@ -1,0 +1,38 @@
+<div class="modal-header">
+    <h4 class="modal-title">新增學生</h4>
+</div>
+
+<div class="modal-body">
+    <div ng-show="ModalCtrl.show('step1')">
+        <form name="findStuForm" novalidate>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="ModalCtrl.stu.classCode"
+                       name="classCode" placeholder="班級代碼" required />
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" ng-model="ModalCtrl.stu.stuCode"
+                       name="stuCode" placeholder="學生代碼" required />
+            </div>
+        </form>
+    </div>
+
+    <div ng-show="ModalCtrl.show('step2')">
+        <div ng-hide="ModalCtrl.hasError" style="font-size: 1.2em;">
+            以下資料是否正確？<br />
+            班級：{{ ModalCtrl.foundClass.class_name }}<br />
+            導師：{{ ModalCtrl.foundClass.teacher.real_name }}<br />
+            學生：{{ ModalCtrl.foundStu.name }}<br />
+            座號：{{ ModalCtrl.foundStu.num }}<br />
+        </div>
+        <span class="text-danger" ng-show="ModalCtrl.hasError">
+            找不到資料，請確認班級代碼與學生代碼是否正確！
+        </span>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button class="btn btn-primary" ng-disabled="findStuForm.$invalid" ng-show="ModalCtrl.show('step1')" ng-click="ModalCtrl.search()">下一步</button>
+    <button class="btn btn-primary" ng-show="!ModalCtrl.hasError && ModalCtrl.show('step2')" ng-click="ModalCtrl.ok()">確定</button>
+    <button class="btn btn-primary" ng-show="ModalCtrl.hasError" ng-click="ModalCtrl.prevStep()">上一步</button>
+    <button class="btn btn-warning" ng-click="ModalCtrl.cancel()">取消</button>
+</div>

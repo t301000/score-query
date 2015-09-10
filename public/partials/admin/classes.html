@@ -1,0 +1,7 @@
+<h4>班級管理</h4>
+
+<ul>
+    <li ng-repeat="item in AdminClasses.lists | orderBy: ['+school_year_in', '+class_name']">
+        {{ item | json }}
+    </li>
+</ul>

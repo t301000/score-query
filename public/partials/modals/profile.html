@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <h4 class="modal-title">我的資料</h4>
+</div>
+<form name="profileForm">
+<div class="modal-body">
+    <div class="form-group">
+        <label class="control-label" for="real_name">真實姓名：</label>
+        <input class="form-control input-lg" type="text" id="real_name" name="real_name" ng-model="profile.userData.real_name" required />
+    </div>
+    <div class="form-group">
+        <label class="control-label" for="email">電子郵件：</label>
+        <input class="form-control input-lg" type="email" id="email" name="email" ng-model="profile.userData.email" required />
+    </div>
+
+    <div ng-show="profile.userData.provider==='local'">
+        <div class="form-group">
+            <label class="control-label" for="passwd">變更密碼：</label>
+            <input class="form-control input-lg" type="password" id="passwd" ng-model="profile.userData.new_passwd" placeholder="請輸入新密碼" />
+        </div>
+        <div class="form-group">
+            <input class="form-control input-lg" type="password" id="passwd2" ng-model="profile.userData.new_passwd2" placeholder="請再輸入一次新密碼" />
+        </div>
+    </div>
+    <div class="text-right">
+        <button class="btn btn-primary" ng-click="profile.ok()" ng-disabled="profileForm.$invalid || profile.userData.new_passwd !== profile.userData.new_passwd2">確定</button>
+        <button class="btn btn-warning" ng-click="profile.cancel()">取消</button>
+    </div>
+</div>
+<!--<div class="modal-footer">-->
+    <!--<button class="btn btn-primary" ng-click="profile.ok()" ng-disabled="profileForm.$invalid || profile.userData.new_passwd !== profile.userData.new_passwd2">確定</button>-->
+    <!--<button class="btn btn-warning" ng-click="profile.cancel()">取消</button>-->
+<!--</div>-->
+</form>
