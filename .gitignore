@@ -6,3 +6,4 @@ Homestead.json
 /.idea
 /storage/database.sqlite
 /.vagrant
+/bower_components
