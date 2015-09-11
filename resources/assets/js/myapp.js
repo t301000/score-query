@@ -17,9 +17,11 @@ angular
     TimeToRefreshToken: 5, // 要更新token的時間(分鐘)
 })
 
-.config(['$httpProvider', 'jwtInterceptorProvider', '$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', 'growlProvider', 'cfpLoadingBarProvider',
-    function($httpProvider, jwtInterceptorProvider, $stateProvider, $urlRouterProvider, $ocLazyLoadProvider, growlProvider, cfpLoadingBarProvider)
+.config(['$httpProvider', 'jwtInterceptorProvider', '$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', 'growlProvider', 'cfpLoadingBarProvider', 'RestangularProvider',
+    function($httpProvider, jwtInterceptorProvider, $stateProvider, $urlRouterProvider, $ocLazyLoadProvider, growlProvider, cfpLoadingBarProvider, RestangularProvider)
 {
+    RestangularProvider.setBaseUrl = 'score';
+
     jwtInterceptorProvider.tokenGetter =['jwtHelper', '$http', 'Auth', 'config', function(jwtHelper, $http, Auth, config) {
 
         if (config.url.substr(config.url.length - 5) == '.html') {
