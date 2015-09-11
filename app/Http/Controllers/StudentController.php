@@ -196,7 +196,8 @@ class StudentController extends Controller {
         $stu = Student::find($stuID);
 
         if(!is_null($stu)){
-            $link_codes = Student::select('link_code')->where('class_id', $stu->class_id)->lists('link_code');
+            $link_codes = Student::select('link_code')->where('class_id', $stu->class_id)
+                ->lists('link_code')->toArray();
             $code = str_random(4);
             while(in_array($code, $link_codes)){
                 $code = str_random(4);
