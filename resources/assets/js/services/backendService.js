@@ -8,7 +8,7 @@ function($http, $q)
     obj.getUserList = function(){
         var deferred = $q.defer();
 
-        $http.get('/users')
+        $http.get('users')
             .success(function(response){
                 deferred.resolve(response);
             })
@@ -24,7 +24,7 @@ function($http, $q)
     obj.getUserData = function(id){
         var deferred = $q.defer();
 
-        $http.get('/users/:id',{id: id})
+        $http.get('users/:id',{id: id})
             .success(function(user){
                 deferred.resolve(user);
             })

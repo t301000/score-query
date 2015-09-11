@@ -88,7 +88,7 @@ function($rootScope, $localStorage, jwtHelper, $q, $injector, $timeout, MyAppCon
     //登入 local user
     obj.loginLocalUser = function(user){
         //var $http = $injector.get("$http");
-        return $http.post('/auth/local', user, { ignoreLoadingBar: true }).success(function(response){
+        return $http.post('auth/local', user, { ignoreLoadingBar: true }).success(function(response){
 
             return response;
         });

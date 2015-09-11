@@ -33,7 +33,7 @@ angular
             console.log('token need refresh...');
             // This is a promise of a JWT id_token
             return $http({
-                url: '/auth/refresh_jwt',
+                url: 'auth/refresh_jwt',
                 // This makes it so that this request doesn't send the JWT
                 skipAuthorization: true,
                 method: 'POST',
