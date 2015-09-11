@@ -60,7 +60,7 @@ class StudentController extends Controller {
                                         return $stu->link_code;
                                     })->toArray();
             // 取得已存在之座號
-            $exist_stu_nums = Student::where('class_id', $classID)->lists('num');
+            $exist_stu_nums = Student::where('class_id', $classID)->lists('num')->toArray();
             //return $exist_stu_nums;
             // 存放新增之學生物件之陣列
             $newStudentModels = [];
