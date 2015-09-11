@@ -8,7 +8,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | Don't forget to set this, as it will be used to sign your tokens.
-    | A helper command is provided for this: `php artisan jwt:generate`
+    | A helper command is provided for this: `21y9hgHMGgbx8AcxCrkmqpWfzz0iK3tN`
     |
     */
 

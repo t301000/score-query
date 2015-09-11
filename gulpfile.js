@@ -24,7 +24,7 @@ elixir(function(mix) {
             'ionicons/css/ionicons.css',
             'angular-growl-v2/build/angular-growl.css',
             'angular-loading-bar/build/loading-bar.css',
-            '../../resources/css/myapp.css'
+            '../resources/assets/css/myapp.css'
         ], 'public/build/css/bundle.min.css', base_dir)
 	.copy(base_dir + '/bootstrap/dist/fonts', 'public/build/fonts')
 	.copy(base_dir + '/ionicons/fonts', 'public/build/fonts')
