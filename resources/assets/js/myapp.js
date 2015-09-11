@@ -20,7 +20,7 @@ angular
 .config(['$httpProvider', 'jwtInterceptorProvider', '$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider', 'growlProvider', 'cfpLoadingBarProvider', 'RestangularProvider',
     function($httpProvider, jwtInterceptorProvider, $stateProvider, $urlRouterProvider, $ocLazyLoadProvider, growlProvider, cfpLoadingBarProvider, RestangularProvider)
 {
-    RestangularProvider.setBaseUrl = 'score';
+    RestangularProvider.setBaseUrl('./');
 
     jwtInterceptorProvider.tokenGetter =['jwtHelper', '$http', 'Auth', 'config', function(jwtHelper, $http, Auth, config) {
 
