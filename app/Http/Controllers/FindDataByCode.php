@@ -17,14 +17,14 @@ class FindDataByCode extends Controller {
 	public function findClassStu($class_code, $stu_code)
     {
 
-        $class = Classroom::firstByAttributes(['class_code' => $class_code]);
+        $class = Classroom::where('class_code', $class_code)->first();
         if($class){
             $class->load('teacher');
-            $stu = Student::firstByAttributes(['class_id' => $class->id, 'link_code' => $stu_code]);
+            $stu = Student::where('class_id', $class->id)
+                            ->where('link_code', $stu_code)->first();
         }
         return compact('class', 'stu');
 
-        //return ;
     }
 
 }
